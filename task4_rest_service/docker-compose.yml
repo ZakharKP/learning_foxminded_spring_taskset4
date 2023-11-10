@@ -1,0 +1,20 @@
+version: '3'
+services:
+  app:
+    image: task4:car_rest_api
+    build:
+      context: .
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/cars_rest_service
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=1234
+    depends_on:
+      - db
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: cars_rest_service
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
